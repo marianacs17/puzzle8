@@ -96,7 +96,7 @@ def expand(node):
 
 # this considerates which is the best node to move void into making iterations
 def getBestNode(openSet):
-    global bestF
+    # global bestF
     firstIter = True
 
     for node in openSet.values():
@@ -128,7 +128,7 @@ def buildPath(closedSet):
 
 
 # calling the functions and passing the parameters and setting the new list, array of the values
-# compares the new lists that have been created with the moves of void and the END that is the node goal
+# compares the new lists that have been created with the moves of void (expand) and the END that is the node goal
 def main(puzzle):
     open_set = {str(puzzle): Node(puzzle, puzzle, 0, total_cost(puzzle), "")}
     closed_set = {}
