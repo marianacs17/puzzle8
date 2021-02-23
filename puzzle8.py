@@ -127,6 +127,8 @@ def buildPath(closedSet):
     return branch
 
 
+# calling the functions and passing the parameters and setting the new list, array of the values
+# compares the new lists that have been created with the moves of void and the END that is the node goal
 def main(puzzle):
     open_set = {str(puzzle): Node(puzzle, puzzle, 0, total_cost(puzzle), "")}
     closed_set = {}
@@ -138,7 +140,7 @@ def main(puzzle):
         if test_node.current_node == END:
             return buildPath(closed_set)
 
-        adj_node = getAdjNode(test_node)
+        adj_node = expand(test_node)
         for node in adj_node:
             if str(node.current_node) in closed_set.keys() or str(node.current_node) in open_set.keys() and open_set[
                 str(node.current_node)].f() < node.f():
@@ -149,26 +151,26 @@ def main(puzzle):
 
 
 if __name__ == '__main__':      # get the input for the puzzle
-    br = main([[2, 8, 3],
-               [1, 6, 4],
-               [7, 0, 5]])
+    inp = main([[2, 8, 3],
+                [1, 6, 4],
+                [7, 0, 5]])
 
-    print('total steps : ', len(br) - 1)    # prints total steps the algorithm took to complete
+    print('total steps : ', len(inp) - 1)    # prints total steps the algorithm took to complete
     print()
     print(dash + dash + right_junction, "INPUT", left_junction + dash + dash)
-    for b in br:
-        if b['dir'] != '':
+    for i in inp:
+        if i['dir'] != '':
             letter = ''
-            if b['dir'] == 'U':
+            if i['dir'] == 'U':
                 letter = 'UP'
-            elif b['dir'] == 'R':
+            elif i['dir'] == 'R':
                 letter = "RIGHT"
-            elif b['dir'] == 'L':
+            elif i['dir'] == 'L':
                 letter = 'LEFT'
-            elif b['dir'] == 'D':
+            elif i['dir'] == 'D':
                 letter = 'DOWN'
             print(dash + dash + right_junction, letter, left_junction + dash + dash)
-        print_puzzle(b['node'])
+        print_puzzle(i['node'])
         print()
 
     print(dash + dash + right_junction, 'ABOVE IS THE OUTPUT', left_junction + dash + dash)
