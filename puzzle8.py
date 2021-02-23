@@ -45,7 +45,7 @@ def print_puzzle(array):
             print(middle_line)
 
 
-# Create the node of the puzzle
+# Creates the node for the puzzle
 class Node:
     def __init__(self, current_node, previous_node, g, h, dir):
         self.current_node = current_node
@@ -75,7 +75,10 @@ def total_cost(current_state):
     return cost
 
 
-def getAdjNode(node):
+# the functions that moves void around the puzzle and stars making the moves with the directions declared
+# and adds the new whole state into the list of changing states
+# deepcopy makes it kind of recursive, creates a new vessel so everything can rearrange with the void moving around
+def expand(node):
     listNode = []
     emptyPos = get_pos(node.current_node, 0)
 
@@ -91,6 +94,7 @@ def getAdjNode(node):
     return listNode
 
 
+# this considerates which is the best node to move void into making iterations
 def getBestNode(openSet):
     global bestF
     firstIter = True
@@ -103,6 +107,7 @@ def getBestNode(openSet):
     return bestNode
 
 
+# this will create new ways to get to the goal node with new lists and returning them
 def buildPath(closedSet):
     node = closedSet[str(END)]
     branch = list()
@@ -148,7 +153,7 @@ if __name__ == '__main__':      # get the input for the puzzle
                [1, 6, 4],
                [7, 0, 5]])
 
-    print('total steps : ', len(br) - 1)
+    print('total steps : ', len(br) - 1)    # prints total steps the algorithm took to complete
     print()
     print(dash + dash + right_junction, "INPUT", left_junction + dash + dash)
     for b in br:
