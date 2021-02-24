@@ -129,6 +129,7 @@ def buildPath(closedSet):
 
 # calling the functions and passing the parameters and setting the new list, array of the values
 # compares the new lists that have been created with the moves of void (expand) and the END that is the node goal
+# comparing in which are the less moves made and the best option
 def main(puzzle):
     open_set = {str(puzzle): Node(puzzle, puzzle, 0, total_cost(puzzle), "")}
     closed_set = {}
@@ -155,7 +156,7 @@ if __name__ == '__main__':      # get the input for the puzzle
                 [1, 6, 4],
                 [7, 0, 5]])
 
-    print('total steps : ', len(inp) - 1)    # prints total steps the algorithm took to complete
+    print('total steps : ', len(inp) -   1)    # prints total steps the algorithm took to complete
     print()
     print(dash + dash + right_junction, "INPUT", left_junction + dash + dash)
     for i in inp:
